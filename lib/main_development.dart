@@ -7,7 +7,19 @@
 
 import 'package:allright/app/app.dart';
 import 'package:allright/bootstrap.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
+
+import 'firebase_options.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    return const App();
+  });
 }
